@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <bun>
+        <h2>Chose where you want to pickup the product or check out the truck</h2> 
+
+    </bun>
+    
+
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Showroom or Pickup</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      .options {
+        margin-top: 20px;
+      }
+      .options label {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Choose Showroom or Pickup</h1>
+    <div class="options">
+      <label>
+        <input type="radio" name="option" value="Showroom" checked /> Showroom
+      </label>
+      <label>
+        <input type="radio" name="option" value="pickup" /> Pickup
+      </label>
+    </div>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Initialize the map
+      const map = L.map("map").setView([10.792128, 106.730711], 13);
+      // Showroom is now annotated as delivery
+      // Add OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Define custom icons
+      const deliveryIcon = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      const deliveryIcon2 = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      const deliveryIcon3 = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      const pickupIcon = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-red.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      const pickupIcon2 = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-red.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      const pickupIcon3 = L.icon({
+        iconUrl: "https://leafletjs.com/examples/custom-icons/leaf-red.png",
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+      });
+
+      // Add markers
+      const deliveryMarker = L.marker([10.778973, 106.714828], {
+        icon: deliveryIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Showroom location<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order </a>'
+        );
+
+      const deliveryMarker2 = L.marker([10.813672, 106.726142], {
+        icon: deliveryIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Showroom location<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order </a>'
+        );
+
+      const deliveryMarker3 = L.marker([10.791873, 106.761267], {
+        icon: deliveryIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Showroom location<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order </a>'
+        );
+
+      const pickupMarker = L.marker([10.815442, 106.733598], {
+        icon: pickupIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Pickup location<br>Pickup Time: 9:00 AM<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order</a>'
+        );
+
+      const pickupMarker2 = L.marker([10.793902, 106.776364], {
+        icon: pickupIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Pickup location<br>Pickup Time: 9:00 AM<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order</a>'
+        );
+
+      const pickupMarker3 = L.marker([10.769819, 106.724552], {
+        icon: pickupIcon,
+      })
+        .addTo(map)
+        .bindPopup(
+          'Pickup location<br>Pickup Time: 9:00 AM<br>Product: Include A, B, C<br><a href="https://example.com">Link Text for further order</a>'
+        );
+
+      // Handle the radio button change
+      document.querySelectorAll('input[name="option"]').forEach((elem) => {
+        elem.addEventListener("change", function (event) {
+          if (event.target.value === "pickup") {
+            map.setView([10.792128, 106.730711], 15); // Adjust the view for pickup
+          } else {
+            map.setView([10.815442, 106.733598], 15); // Adjust the view for delivery
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Map with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Create a Leaflet map instance and set its view to your desired location
+      var map = L.map("map").setView([10.806646, 106.734735], 14); // Thao Dien coordinates
+
+      // Add a tile layer from OpenStreetMap
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Add a marker with a custom icon and popup
+      var customIcon = L.icon({
+        iconUrl:
+          "data:image/png;base64,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",
+        iconSize: [40, 40], // Adjust icon size if needed
+        iconAnchor: [16, 32], // Adjust icon anchor if needed
+        popupAnchor: [0, -32], // Adjust popup anchor if needed
+      });
+
+      L.marker([10.806646, 106.734735], { icon: customIcon })
+        .addTo(map)
+        .bindPopup("MoiEM, SnowBite, LaTire, TraMYOrganic,")
+        .openPopup();
+      L.marker([10.807844, 106.724112], { icon: customIcon })
+        .addTo(map)
+        .bindPopup("BlueMoon, SnowBite, LaTire, TraMYOrganic,")
+        .openPopup();
+      L.marker([10.799771, 106.750312], { icon: customIcon })
+        .addTo(map)
+        .bindPopup("I arte Deco, SnowBite, LaTire, TraMYOrganic,")
+        .openPopup();
+      L.marker([10.79271, 106.76147], { icon: customIcon })
+        .addTo(map)
+        .bindPopup("Brewberry, SnowBite, PDD Bakers, TraMYOrganic,")
+        .openPopup();
+      L.marker([10.795534, 106.772843], { icon: customIcon })
+        .addTo(map)
+        .bindPopup("FrameIT, Ben_black_lines_art, LaTire, TraMYOrganic,")
+        .openPopup();
+    </script>
+  </body>
+</html>
+
+</body>
+</html>

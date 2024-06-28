@@ -1,0 +1,121 @@
+<h1>Where the truck operate</h1>
+<H2> </H2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truck Movement on Map</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+      .truck-icon {
+        width: 32px;
+        height: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+      // Initialize the map
+      const map = L.map("map").setView([10.794999, 106.733894], 13);
+
+      // Add OpenStreetMap tile layer
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Truck icon
+      const truckIcon = L.icon({
+        iconUrl:
+          "data:image/png;base64,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", // Replace with your truck icon URL
+        iconSize: [32, 32], // size of the icon
+      });
+
+      // Define the routes for each truck
+      const routes = [
+        [
+          [10.815442, 106.733598],
+          [10.793902, 106.776364],
+          [10.769819, 106.724552],
+          [10.798434, 106.725911],
+          [10.793334, 106.722821],
+          [10.793629, 106.721191],
+        ],
+        [
+          [10.815442, 106.733598],
+          [10.793902, 106.776364],
+          [10.769819, 106.724552],
+          [10.798434, 106.725911],
+          [10.793334, 106.722821],
+          [10.793629, 106.721191],
+        ],
+        [
+          [10.778973, 106.714828],
+          [10.813672, 106.726142],
+          [10.791873, 106.761267],
+          [10.792876, 106.764002],
+          [10.777784, 106.745419],
+          [10.776793, 106.755387],
+        ],
+        [
+          [10.815442, 106.733598],
+          [10.793902, 106.776364],
+          [10.769819, 106.724552],
+          [10.800648, 106.736039],
+          [10.793839, 106.730804],
+        ],
+        [
+          [10.815442, 106.733598],
+          [10.793902, 106.776364],
+          [10.769819, 106.724552],
+          [10.800648, 106.736039],
+          [10.793839, 106.730804],
+        ],
+        [
+          [10.806646, 106.734735],
+          [10.807844, 106.724112],
+          [10.799771, 106.750312],
+          [10.79271, 106.76147],
+          [10.795534, 106.772843],
+        ],
+        [
+          [10.815442, 106.733598],
+          [10.8095, 106.732005],
+          [10.781319, 106.721062],
+          [10.792533, 106.752047],
+          [10.79346, 106.76784],
+          [10.811376, 106.725225],
+        ],
+      ];
+
+      // Create truck markers
+      const trucks = routes.map((route) => ({
+        marker: L.marker(route[0], { icon: truckIcon }).addTo(map),
+        route,
+        routeIndex: 0,
+      }));
+
+      // Function to move trucks along their routes
+      function moveTrucks() {
+        trucks.forEach((truck) => {
+          truck.routeIndex = (truck.routeIndex + 1) % truck.route.length;
+          const newLatLng = truck.route[truck.routeIndex];
+          truck.marker.setLatLng(newLatLng);
+        });
+      }
+
+      // Move trucks every second
+      setInterval(moveTrucks, 1000);
+    </script>
+  </body>
+</html>
